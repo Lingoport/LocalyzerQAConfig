@@ -113,8 +113,14 @@ fi
 cd $home_directory/localyzerqa/config
 
 old=`cat cc_container_id.txt`
+old_db=`cat cc_mysql_id.txt`
 
 sudo docker stop $old
+
+current_date=`date -I`
+
+docker exec $old_db /usr/bin/mysqldump -u root --password=$database_root_password localyzerqadb > $home_directory/localyzerqa/backup/qa_database_backup_$current_date.sql
+
 
 echo $docker_account_token | sudo docker login -u $docker_username --password-stdin
 
