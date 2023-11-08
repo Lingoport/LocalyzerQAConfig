@@ -110,6 +110,8 @@ then
     fi
 fi
 
+mkdir -p $home_directory/localyzerqa/backup || true
+
 cd $home_directory/localyzerqa/config
 
 old=`cat cc_container_id.txt`
